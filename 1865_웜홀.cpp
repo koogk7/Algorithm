@@ -60,7 +60,7 @@ bool SPFA(int startNode, int dist[], int cycle[], bool inQ[]){
             bool isUpdate = dist[cur] + nextValue < dist[nextNode];
             if(!isUpdate) continue;
             dist[nextNode] = dist[cur] + nextValue;
-            if(inQ[nextNode]) continue;
+            if(inQ[nexwtNode]) continue;
             if(cycle[nextNode] >= n-1){
                 return false;
             }
