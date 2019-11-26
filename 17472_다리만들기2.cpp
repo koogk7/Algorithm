@@ -121,7 +121,6 @@ void getDistance(int source, int dir){
     }
 
 
-
     while(!que.empty()){
         int row = que.front().row;
         int col = que.front().col;

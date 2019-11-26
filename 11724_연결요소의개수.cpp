@@ -59,6 +59,7 @@ int main() {
 
     for (int i = 1; i < n+1; ++i) {
         find(i);
+        parent[i] = i;
     }
 
     for (int i = 0; i < m; ++i) {
