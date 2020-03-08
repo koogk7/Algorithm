@@ -38,6 +38,7 @@ void getPrime(int begin, int end){
             }
         }
     }
+    
     for(int i = begin; i <= end; i++)
         if(!c[i]){
             primes.push_back(i);
