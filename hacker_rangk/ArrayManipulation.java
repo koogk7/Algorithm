@@ -1,62 +1,72 @@
-import java.util.Scanner;
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
-public class HR_NewYearChoas {
-    static void minimumBribes(int[] q) {
-        int ans = 0;
-        String chaos = "Too chaotic";
+public class HR_ArrayManipulation {
+    /*
+    1 5 3 ==>  1,5,3
+    4 8 7 ==>  1,4,10,
+    4 9 4 ==>  1,5,3 4,5,10, 6,8,7,
+    [3,0,0,0,0,-3],
+    [3,0,0,7,-3,0,0,0,-7]
 
-        for(int i= q.length-1; i > 0; i--){
-            boolean isSwap = q[i-1] > q[i]; // 앞이 더 크면 바꿈
-            int swapCnt = 0;
-            int swapStartIdx = i;
-            if(!isSwap) continue;
+    */
 
-            while(isSwap) {
-                int buffer = q[swapStartIdx];
-                q[swapStartIdx] = q[swapStartIdx-1];
-                q[swapStartIdx-1] = buffer;
+    static long arrayManipulation(int n, int[][] queries) {
+        long ans = 0;
+        long[] prefixSums = new long[n+1];
 
-                swapStartIdx++;
-                swapCnt++;
-                if(swapCnt > 2) {
-                    System.out.println(chaos);
-                    return;
-                }
-                if(swapStartIdx == q.length) break;
+        for(int i=0; i< queries.length; i++){
+            int startIdx = queries[i][0] - 1;
+            int endIdx = queries[i][1];
+            int addSum = queries[i][2];
 
-                isSwap = q[swapStartIdx-1] > q[swapStartIdx];
-            }
-
-            ans += swapCnt;
+            prefixSums[startIdx] += addSum;
+            prefixSums[endIdx] -= addSum;
         }
 
-        System.out.println(ans);
+        long beforeAccSum = 0;
+        for(int i = 0; i< n; i++){
+            beforeAccSum += prefixSums[i];
+            ans = Math.max(ans, beforeAccSum);
+        }
+
+        return ans;
     }
-
-
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        int t = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        for (int tItr = 0; tItr < t; tItr++) {
-            int n = scanner.nextInt();
+        String[] nm = scanner.nextLine().split(" ");
+
+        int n = Integer.parseInt(nm[0]);
+
+        int m = Integer.parseInt(nm[1]);
+
+        int[][] queries = new int[m][3];
+
+        for (int i = 0; i < m; i++) {
+            String[] queriesRowItems = scanner.nextLine().split(" ");
             scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            int[] q = new int[n];
-
-            String[] qItems = scanner.nextLine().split(" ");
-            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-            for (int i = 0; i < n; i++) {
-                int qItem = Integer.parseInt(qItems[i]);
-                q[i] = qItem;
+            for (int j = 0; j < 3; j++) {
+                int queriesItem = Integer.parseInt(queriesRowItems[j]);
+                queries[i][j] = queriesItem;
             }
-
-            minimumBribes(q);
         }
+
+        long result = arrayManipulation(n, queries);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
 
         scanner.close();
     }
