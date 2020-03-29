@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1faaefb1-4936-4764-8bb2-d85dd0e2eb5b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/hacker_rangk/RecursiveDigitSum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hacker_rangk/ArrayManipulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/hacker_rangk/ArrayManipulation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583150217254</updated>
       <workItem from="1583150221352" duration="451000" />
-      <workItem from="1585391483160" duration="373000" />
+      <workItem from="1585391483160" duration="893000" />
     </task>
     <servers />
   </component>
